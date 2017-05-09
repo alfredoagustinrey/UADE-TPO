@@ -4,36 +4,35 @@ import java.util.List;
 
 public class P3_Ejercicio1 {
 	
-	public static SolucionEjercicio1 Ejercicio1(List<Punto> puntos){
-		SolucionEjercicio1 result = new SolucionEjercicio1();
+	public static SolucionEjercicio1 Ejercicio1(List<Punto> puntos) {
 		
-		//no hay 2 puntos para comparar
-		if (puntos.size() < 2)
-			return null;
-		//Se devuelven los 2 puntos de la lista.
-		if (puntos.size() == 2){
-			return solucionTrivial(puntos);
-		}
+		// No hay 2 puntos para comparar.
+		if (puntos.size() < 2) return null;
 		
-		//Se aplica DyC
+		puntos.sort((Punto p1, Punto p2)->p1.getX()-p2.getX());
+		
+		// Se devuelven los 2 puntos de la lista.
+		if (puntos.size() == 2) return solucionTrivial(puntos);
+		
+		// Se aplica DyC
 		int  medio = puntos.size()/2;
-		SolucionEjercicio1 p1= Ejercicio1(puntos.subList(0, medio));
-		SolucionEjercicio1 p2= Ejercicio1(puntos.subList(medio + 1, puntos.size()));
-			
-		//Este for no se si va el profesor lo puso en el ejemplo. 
-		for (int i = 0; i < puntos.size(); i++) {
-			//Asi cuentan cantidad de instrucciones
-			result.cantidadInstrucciones++;
-		}
 		
-		return result;
+		SolucionEjercicio1 SolucionIzquierdo	= Ejercicio1(puntos.subList(0, medio));
+		SolucionEjercicio1 SolucionDerecho		= Ejercicio1(puntos.subList(medio + 1, puntos.size())));
+		
+		float distancia_izquierda = SolucionEjercicio1.ge
+		if (SolucionIzquierdo.ge)
 	}
 	
 	private static SolucionEjercicio1 solucionTrivial(List<Punto> puntos){
-		SolucionEjercicio1 s=new SolucionEjercicio1();
-		s.cantidadInstrucciones = 1;
-		s.punto1=puntos.get(0);
-		s.punto2=puntos.get(1);
-		return  s;
+		
+		Punto punto_1 = new Punto(puntos.get(0).getX(), puntos.get(0).getY());
+		Punto punto_2 = new Punto(puntos.get(1).getX(), puntos.get(1).getY());
+		
+		return new SolucionEjercicio1(punto_1, punto_2, 1);
+	}
+	
+	private static float getDistance(SolucionEjercicio1 Solucion) {
+		return (float) Math.sqrt(Math.pow(Solucion.getPunto_1().getX() - Solucion.getPunto_2().getX(), 2) + Math.pow(Solucion.getPunto_1().getY() - Solucion.getPunto_1().getY(), 2));
 	}
 }
