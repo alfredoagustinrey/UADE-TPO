@@ -7,7 +7,14 @@ public class P3_Ejercicio1 {
 	public static SolucionEjercicio1 Ejercicio1(List<Punto> puntos) {
 		
 		// No hay 2 puntos para comparar.
-		if (puntos.size() < 2) return null;
+		if (puntos.size() < 2) {
+			
+			// Supongo que con una distancia de 10000 es como infinito
+			Punto x = new Punto(0,0);
+			Punto y = new Punto(10000,10000);
+			
+			return new SolucionEjercicio1(x,y,1);
+		}
 		
 		puntos.sort((Punto p1, Punto p2)->p1.getX()-p2.getX());
 		
@@ -18,10 +25,12 @@ public class P3_Ejercicio1 {
 		int  medio = puntos.size()/2;
 		
 		SolucionEjercicio1 SolucionIzquierdo	= Ejercicio1(puntos.subList(0, medio));
-		SolucionEjercicio1 SolucionDerecho		= Ejercicio1(puntos.subList(medio + 1, puntos.size())));
+		SolucionEjercicio1 SolucionDerecho		= Ejercicio1(puntos.subList(medio + 1, puntos.size()));
 		
-		float distancia_izquierda = SolucionEjercicio1.ge
-		if (SolucionIzquierdo.ge)
+		float distancia_izquierda	= getDistance(SolucionIzquierdo);
+		float distancia_derecha		= getDistance(SolucionDerecho);
+		
+		return distancia_izquierda > distancia_derecha ? SolucionDerecho : SolucionIzquierdo;
 	}
 	
 	private static SolucionEjercicio1 solucionTrivial(List<Punto> puntos){
