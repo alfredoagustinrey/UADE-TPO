@@ -2,7 +2,7 @@ package ejercicio1;
 
 import java.util.List;
 
-public class P3_Ejercicio1 {
+public class P3_Ejercicio1 { 
 	
 	public static SolucionEjercicio1 Ejercicio1(List<Punto> puntos){
 		SolucionEjercicio1 result = new SolucionEjercicio1();
