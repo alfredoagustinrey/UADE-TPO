@@ -9,7 +9,7 @@ public class P3_Ejercicio1 {
 		// No hay 2 puntos para comparar.
 		if (puntos.size() < 2) {
 			
-			// Supongo que con una distancia de 10000 es como infinito
+			// Supongo que con una distancia de 10000 es como infinito.
 			Punto x = new Punto(0,0);
 			Punto y = new Punto(10000,10000);
 			
@@ -21,7 +21,7 @@ public class P3_Ejercicio1 {
 		// Se devuelven los 2 puntos de la lista.
 		if (puntos.size() == 2) return solucionTrivial(puntos);
 		
-		// Se aplica DyC
+		// Se aplica DyC.
 		int  medio = puntos.size()/2;
 		
 		SolucionEjercicio1 SolucionIzquierdo	= Ejercicio1(puntos.subList(0, medio));
@@ -41,6 +41,7 @@ public class P3_Ejercicio1 {
 		return new SolucionEjercicio1(punto_1, punto_2, 1);
 	}
 	
+	// Calculo de la distancia entre dos puntos.
 	private static float getDistance(SolucionEjercicio1 Solucion) {
 		return (float) Math.sqrt(Math.pow(Solucion.getPunto_1().getX() - Solucion.getPunto_2().getX(), 2) + Math.pow(Solucion.getPunto_1().getY() - Solucion.getPunto_1().getY(), 2));
 	}
