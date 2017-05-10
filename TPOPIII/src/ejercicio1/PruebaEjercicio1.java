@@ -12,7 +12,7 @@ public class PruebaEjercicio1 extends TestCase {
 		puntos.add(new Punto(1,1));
 		puntos.add(new Punto(2,2));
 			
-		for (int i = 1; i <= 32; i++) puntos.add(new Punto(i*i,i*i));
+		for (int i = 3; i <= 32; i++) puntos.add(new Punto(i*i,i*i));
 		
 		SolucionEjercicio1 solucionEj1 = P3_Ejercicio1.Ejercicio1(puntos);
 		

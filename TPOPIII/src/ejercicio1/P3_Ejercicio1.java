@@ -10,7 +10,7 @@ public class P3_Ejercicio1 {
 		if (puntos.size() < 2) {
 			
 			// Supongo que con una distancia de 10000 es como infinito.
-			Punto x = new Punto(0,0);
+			Punto x = new Punto(10000,10000);
 			Punto y = new Punto(10000,10000);
 			
 			return new SolucionEjercicio1(x,y,1);
