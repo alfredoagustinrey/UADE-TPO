@@ -31,6 +31,14 @@ public class SolucionEjercicio1 {
 
 		return Math.sqrt(dx + dy);
 	}
+	
+	public static double getDistancia(Punto punto1, Punto punto2) {
+		
+		double dx = Math.pow(punto1.getX() - punto2.getX(), 2);
+		double dy = Math.pow(punto2.getY() - punto2.getY(), 2);
+
+		return Math.sqrt(dx + dy);
+	}
 }
 
 

@@ -6,7 +6,7 @@ public class Punto implements Comparable<Punto> {
 	private int y;
 	
 	public int getX() {
-		return x;
+		return this.x;
 	}
 	
 	public void setX(int x) {
@@ -28,12 +28,8 @@ public class Punto implements Comparable<Punto> {
 	
 	@Override
     public int compareTo(Punto p) {
-        if (x < p.x) {
-            return -1;
-        }
-        if (x > p.x) {
-            return 1;
-        }
+        if (x < p.x) return -1;
+        if (x > p.x) return 1;
         return 0;
     }
 }
