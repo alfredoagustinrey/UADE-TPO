@@ -1,24 +1,35 @@
 package ejercicio1;
 
-public class Punto {
+public class Punto implements Comparable<Punto> {
+	
 	private int x;
 	private int y;
 	
 	public int getX() {
-		return x;
+		return this.x;
 	}
+	
 	public void setX(int x) {
 		this.x = x;
 	}
+	
 	public int getY() {
-		return y;
+		return this.y;
 	}
+	
 	public void setY(int y) {
 		this.y = y;
 	}
 	
-	public Punto(int puntoX,int puntoY){
-		this.x=puntoX;
-		this.y=puntoY;
+	public Punto(int x,int y){
+		this.x = x;
+		this.y = y;
 	}
+	
+	@Override
+    public int compareTo(Punto p) {
+        if (x < p.x) return -1;
+        if (x > p.x) return 1;
+        return 0;
+    }
 }

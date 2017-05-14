@@ -2,28 +2,22 @@ package ejercicio1;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import junit.framework.TestCase;
 
-
 public class PruebaEjercicio1 extends TestCase {
+	
 	public void testEjercicio1(){
+			
+		List<Punto> puntos = new ArrayList<Punto>();
 		
-		List<Punto>  puntos = new ArrayList<>();
+		for (int i = 0; i <= 31; i++) puntos.add(new Punto(i*i,i*i));
 		
-		//creo 32 puntos aleatorios
-		for (int i = 0; i < 32; i++) {
-			Punto p = new Punto((int)Math.random(), (int)Math.random());
-			puntos.add(p);
-		}
+		SolucionEjercicio1 solucionEj1 = P3_Ejercicio1.Ejercicio1(puntos);
 		
-		SolucionEjercicio1 solucionEj1 = new SolucionEjercicio1();
-		//se debe setear la cantidad de instrucciones correctas.
-		solucionEj1.cantidadInstrucciones = 0;
-		//se debe setear los puntos correctos que se obtienen resolviendo el ejercicio.
-		solucionEj1.punto1 = null;
-		solucionEj1.punto2 = null;
+		assertEquals(solucionEj1.getPunto1().getX(), 0);
+		assertEquals(solucionEj1.getPunto1().getY(), 0);
+		assertEquals(solucionEj1.getPunto2().getX(), 1);
+		assertEquals(solucionEj1.getPunto2().getY(), 1);
 		
-		assertEquals(P3_Ejercicio1.Ejercicio1(puntos), solucionEj1);
 	}
 }
