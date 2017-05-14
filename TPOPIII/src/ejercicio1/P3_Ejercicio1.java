@@ -7,35 +7,56 @@ public class P3_Ejercicio1 {
 	
 	public static SolucionEjercicio1 Ejercicio1(List<Punto> puntos) {
 		
-		SolucionEjercicio1 solucion = null;
-		
 		// No hay 2 puntos para comparar.
-		if (puntos.size() < 2) return getPuntoInfinito();
-		
+		if (puntos.size() < 2) {
+			// Incrementa en uno, es algo trivial.
+			SolucionEjercicio1.IncrementarContadorIteraciones(1);
+			return getPuntoInfinito();
+		}
 		// Ordenamos la lista por los puntos de coordenada x.
 		Collections.sort(puntos);
+		// Tomo como que el ordenamiento es "lineal" *** Se puede modificar ***
+		SolucionEjercicio1.IncrementarContadorIteraciones(puntos.size());
+		
 		
 		// Se devuelven los 2 puntos de la lista.
-		if (puntos.size() == 2) return solucionTrivial(puntos);
+		if (puntos.size() == 2) {
+			// Es solucion trivial, sumo uno.
+			SolucionEjercicio1.IncrementarContadorIteraciones(1);
+			return solucionTrivial(puntos);
+		}
+		
 		
 		// Se aplica Divide y Conquista.
 		int medio = puntos.size() / 2;
-		
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
+
 		List<Punto> lista_izquierda = puntos.subList(0, medio);
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
+		
 		List<Punto> lista_derecha	= puntos.subList(medio + 1, puntos.size());
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
 		
 		SolucionEjercicio1 solucion_izquierda 	= Ejercicio1(lista_izquierda);
 		SolucionEjercicio1 solucion_derecha		= Ejercicio1(lista_derecha);
 		
 		double distancia_izquierda	= solucion_izquierda.getDistancia();
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
+		
 		double distancia_derecha	= solucion_derecha.getDistancia();
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
 		
 		// Menor distancia entre los puntos de cada lado.
 		double menor_distancia_parte = (distancia_izquierda > distancia_derecha) ? distancia_derecha : distancia_izquierda;
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
 		
+		// Esta comparación en NxN, ya que se tiene que comparar punto con punto de la lista.
 		SolucionEjercicio1 solucion_central = MenorDistanciaEnPuntosCentrales(lista_izquierda, lista_derecha, ((double) medio) + menor_distancia_parte);
-		double distancia_central = solucion_central.getDistancia();
+		SolucionEjercicio1.IncrementarContadorIteraciones(lista_izquierda.size()*lista_derecha.size());
 		
+		double distancia_central = solucion_central.getDistancia();
+		SolucionEjercicio1.IncrementarContadorIteraciones(1);
+
 		// Solo falta ver cual de las 3 soluciones es la menor.
 		// Izquierda
 		// Derecha o
@@ -43,8 +64,12 @@ public class P3_Ejercicio1 {
 		
 		// Centro es el menor de las dos partes, no tengo que seguir preguntando.
 		
-		if (distancia_central < menor_distancia_parte) solucion = solucion_central;
-		else solucion = (distancia_izquierda < distancia_derecha) ? solucion_izquierda : solucion_derecha;
+		SolucionEjercicio1 solucion_auxiliar = null;
+		
+		if (distancia_central < menor_distancia_parte) solucion_auxiliar = solucion_central;
+		else solucion_auxiliar = (distancia_izquierda < distancia_derecha) ? solucion_izquierda : solucion_derecha;
+		
+		SolucionEjercicio1 solucion = new SolucionEjercicio1(solucion_auxiliar.getPunto1(), solucion_auxiliar.getPunto2(), SolucionEjercicio1.getContadorIteraciones());
 		
 		return solucion;
 	}
@@ -54,7 +79,7 @@ public class P3_Ejercicio1 {
 		Punto punto1 = new Punto(puntos.get(0).getX(), puntos.get(0).getY());
 		Punto punto2 = new Punto(puntos.get(1).getX(), puntos.get(1).getY());
 		
-		return new SolucionEjercicio1(punto1, punto2, 1);
+		return new SolucionEjercicio1(punto1, punto2, 0);
 	}
 	
 	private static SolucionEjercicio1 MenorDistanciaEnPuntosCentrales(List<Punto> izquierdos, List<Punto> derechos , double rango) {
@@ -66,8 +91,8 @@ public class P3_Ejercicio1 {
 		
 		for (Punto izquierdo : izquierdos) {
 			for (Punto derecho : derechos) {
-				if (SolucionEjercicio1.getDistancia(izquierdo, derecho) < menor_distancia_central.getDistancia()) {
-					menor_distancia_central = new SolucionEjercicio1(izquierdo, derecho, 1);
+				if (SolucionEjercicio1.CalcularDistanciaPuntos(izquierdo, derecho) < menor_distancia_central.getDistancia()) {
+					menor_distancia_central = new SolucionEjercicio1(izquierdo, derecho, 0);
 				}
 			}
 		}
@@ -81,6 +106,6 @@ public class P3_Ejercicio1 {
 		Punto x = new Punto(0,0);
 		Punto y = new Punto(100000,100000);
 		
-		return new SolucionEjercicio1(x,y,1);
+		return new SolucionEjercicio1(x,y,0);
 	}
 }

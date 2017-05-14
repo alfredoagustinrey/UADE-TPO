@@ -18,5 +18,6 @@ public class PruebaEjercicio1 extends TestCase {
 		assertEquals(solucionEj1.getPunto1().getY(), 0);
 		assertEquals(solucionEj1.getPunto2().getX(), 1);
 		assertEquals(solucionEj1.getPunto2().getY(), 1);
+		
 	}
 }
